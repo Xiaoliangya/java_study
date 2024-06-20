@@ -13,6 +13,7 @@ public class maze {
 
         map[3][1] = 1;
         map[3][2] = 1;
+        map[2][2] = 1; //测试回溯
 
         System.out.println("====maze map:====");
         for (int i = 0; i < 8; i++) {
@@ -42,28 +43,56 @@ public class maze {
 * 当map[6][5]为2时，表示找到通路，可以返回true
 * 找路策略：下->右->上->左
 */
-class T{
-    public boolean findway(int[][] map,int i,int j) {
-        if(map[6][5]==2) {
+class T {
+    public boolean findway(int[][] map, int i, int j) {
+        if (map[6][5] == 2) {
             return true;
-        }else{
-            if(map[i][j]==0){ //表示当前坐标可以走
+        } else {
+            if (map[i][j] == 0) { //表示当前坐标可以走
                 //假定可以走通
-                map[i][j]=2;
-                if(findway(map,i+1,j)) {
+                map[i][j] = 2;
+                //策略：下->右->上->左
+                if (findway(map, i + 1, j)) {
                     return true;
-                }else if(findway(map,i,j+1)) {
+                } else if (findway(map, i, j + 1)) {
                     return true;
-                }else if(findway(map,i-1,j)) {
+                } else if (findway(map, i - 1, j)) {
                     return true;
-                }else if(findway(map,i,j-1)) {
+                } else if (findway(map, i, j - 1)) {
                     return true;
-                }else{
+                } else {
                     //都不行，说明走不通，回退
-                    map[i][j]=3;
+                    map[i][j] = 3;
                     return false;
                 }
-            }else{
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public boolean findway2(int[][] map, int i, int j) {
+        if (map[6][5] == 2) {
+            return true;
+        } else {
+            if (map[i][j] == 0) { //表示当前坐标可以走
+                //假定可以走通
+                map[i][j] = 2;
+                //策略：上->右->下->左
+                if (findway2(map, i - 1, j)) {
+                    return true;
+                } else if (findway2(map, i, j + 1)) {
+                    return true;
+                } else if (findway2(map, i + 1, j)) {
+                    return true;
+                } else if (findway2(map, i, j - 1)) {
+                    return true;
+                } else {
+                    //都不行，说明走不通，回退
+                    map[i][j] = 3;
+                    return false;
+                }
+            } else {
                 return false;
             }
         }
