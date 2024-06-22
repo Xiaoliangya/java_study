@@ -4,7 +4,7 @@ public class TestCalculator {
         System.out.println(calculator.calculate(2, 3)); // expected output: 5
         System.out.println(calculator.calculate(2, 3.0)); // expected output: 5.0
         System.out.println(calculator.calculate(2.0, 3)); // expected output: 5.0
-        System.out.println(calculator.calculate(2, 3, 4)); // expected output: 9
+        System.out.println(calculator.calculate(2, 3, 4));
     }
 }
 
