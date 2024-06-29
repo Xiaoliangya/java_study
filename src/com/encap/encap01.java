@@ -6,10 +6,13 @@ public class encap01 {
         person.setName("John");
         person.setAge(25);
         person.setSalary(50000.0);
-
         String info = person.info();
-
         System.out.println(info);
+
+        Person person1 = new Person("杨亮", 10000, 8888);
+        System.out.println(person1.info());
+
+
     }
 }
 
@@ -17,6 +20,14 @@ class Person {
     public String name;
     private int age;
     private double salary;
+
+    public Person(String name, int age, double salary) {
+        setName(name);
+        setAge(age);
+        setSalary(salary);
+    }
+
+    public Person() {}
 
     public String getName() {
         return name;
